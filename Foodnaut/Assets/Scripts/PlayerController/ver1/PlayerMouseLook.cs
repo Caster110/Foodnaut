@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float mouseSens = 600f; //сенса мыши
+    public float mouseSensivity = 600f; //сенса мыши
     public Transform playerBody;
     private float xRotation = 0f;
     void Start()
@@ -16,8 +16,8 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         //координаты мыши 
-        float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensivity * Time.deltaTime;
 
         //вращение по осям X и Y
         xRotation -= mouseY;
