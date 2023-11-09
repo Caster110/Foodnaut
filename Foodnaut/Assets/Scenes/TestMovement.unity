@@ -256,7 +256,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.73333335, b: 0.7058824, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -268,7 +268,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -559,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8031063231167191479, guid: 0d3fd3bb035218f4fb1863f3f184b3b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.949
+      value: -1.0500001
       objectReference: {fileID: 0}
     - target: {fileID: 8031063231167191479, guid: 0d3fd3bb035218f4fb1863f3f184b3b7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1424,6 +1424,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen Window
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ee14857d51363946bac6dd35f172868, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 3ee14857d51363946bac6dd35f172868, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1641,7 +1649,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5142668418803027324, guid: 1c6e16b72a64ff14fb2925b72fc2bc04, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.457
+      value: -17.469
       objectReference: {fileID: 0}
     - target: {fileID: 5142668418803027324, guid: 1c6e16b72a64ff14fb2925b72fc2bc04, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1696,6 +1704,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1338281853881525160, guid: 0d3fd3bb035218f4fb1863f3f184b3b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.139
+      objectReference: {fileID: 0}
     - target: {fileID: 7223705468514566925, guid: 0d3fd3bb035218f4fb1863f3f184b3b7, type: 3}
       propertyPath: m_Name
       value: Oven_Prefab (1)
@@ -1710,7 +1722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8031063231167191479, guid: 0d3fd3bb035218f4fb1863f3f184b3b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.948
+      value: -1.049
       objectReference: {fileID: 0}
     - target: {fileID: 8031063231167191479, guid: 0d3fd3bb035218f4fb1863f3f184b3b7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1869,7 +1881,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5142668418803027324, guid: 1c6e16b72a64ff14fb2925b72fc2bc04, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.457
+      value: -17.469
       objectReference: {fileID: 0}
     - target: {fileID: 5142668418803027324, guid: 1c6e16b72a64ff14fb2925b72fc2bc04, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2043,7 +2055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4755218590626841109, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.897
+      value: -4.94
       objectReference: {fileID: 0}
     - target: {fileID: 4755218590626841109, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2051,7 +2063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4755218590626841109, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.821
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 4755218590626841109, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2120,7 +2132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9052964816716856803, guid: f8c51e157f898d748924a1e396477abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.55
+      value: -14.52
       objectReference: {fileID: 0}
     - target: {fileID: 9052964816716856803, guid: f8c51e157f898d748924a1e396477abb, type: 3}
       propertyPath: m_LocalPosition.y
