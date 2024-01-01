@@ -4,109 +4,82 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    [Header("Movement")]
-    public float moveSpeed; // скорость игрока 
-    public float groundDrag;
+    [SerializeField] private float speedWalk;
+    [SerializeField] private float gravity;
+    [SerializeField] private float jumpPower;
+    [SerializeField] private float speedRun;
 
-    public float jumpForce; // сила прыжка
-    public float jumpCooldown; // перезарядка прыжка
-    public float airMultipiler; // множитель воздуха 
-    bool readyToJump = true; // готов ли к прожку? 
+    private float keyHorizontal;
+    private float keyVertical;
+    private bool keySit;
+    private bool keyJump;
+    private bool keyRun;
 
-    [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-
-    [Header("Ground Check")]
-    public float playerHeight; // высота игрока 
-    public LayerMask whatIsGround; // маска земли
-    bool grounded; // игрок на земле?
-
-
-    public Transform orientation; // ориентация игрока в пространстве 
-
-    // ввод с клавиатуры 
-    float horizontalInput;
-    float verticalInput;
-
-    Vector3 moveDirection; // вектор направления движения игрока
-
-    Rigidbody rb;
+    private CharacterController characterController;
+    private Vector3 walkDirection;
+    private Vector3 velocity;
+    private float currentSpeed;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-    }
-
-    private void FixedUpdate()
-    {
-        MovePlayer();
+        currentSpeed = speedWalk;
+        characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-        // проверка земли под ногами
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-
-        PlayerInput();
-        SpeedControl();
-
-        // заземление игрока 
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+        GetKeys();
     }
 
-    // метод ввода данных с клавиатуры 
-    private void PlayerInput()
+    private void GetKeys()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        keyJump = Input.GetKey(KeyCode.Space);
+        keyRun= Input.GetKey(KeyCode.LeftShift);
+        keySit = Input.GetKey(KeyCode.LeftControl);
+        keyHorizontal = Input.GetAxis("Horizontal");
+        keyVertical = Input.GetAxis("Vertical");
+    }
 
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+    private void FixedUpdate()
+    {
+        bool groundCheck = characterController.isGrounded;
+        walkDirection = keyHorizontal * transform.right + keyVertical * transform.forward;
+        TryJump(keyJump, groundCheck);
+        TryRun(keyRun);
+        TrySit(keySit);
+        Walk(walkDirection);
+        DoGravity(groundCheck);
+    }
+
+    private void Walk(Vector3 direction)
+    {
+        characterController.Move(direction * currentSpeed * Time.fixedDeltaTime);
+    }
+
+    private void DoGravity(bool isGrounded)
+    {
+        if (isGrounded && velocity.y < 0f)
         {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
+            velocity.y = 0f;
+            return;
         }
+        velocity.y -= gravity * Time.fixedDeltaTime;
+        characterController.Move(velocity * Time.fixedDeltaTime);
     }
 
-    private void MovePlayer()
+    private void TryJump(bool keyPressed, bool isGrounded)
     {
-        // расчёт направления движения 
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        if(grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-    
-        else if(!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultipiler, ForceMode.Force);
+        if (keyPressed && isGrounded)
+            velocity.y = jumpPower;
     }
 
-    private void SpeedControl()
+    private void TryRun(bool keyPressed)
     {
-        // получение скорости на плоскости 
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        // лимит скорости
-        if(flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
+        currentSpeed = keyPressed ? speedRun : speedWalk;
     }
 
-    private void Jump()
+    private void TrySit(bool keyPressed)
     {
-        // скорость по оси Y
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-
-    private void ResetJump()
-    {
-        readyToJump = true;
+        characterController.height = keyPressed ? 1f : 2f;
     }
 }

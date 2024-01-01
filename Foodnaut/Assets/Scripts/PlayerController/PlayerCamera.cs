@@ -6,16 +6,18 @@ using UnityEngine;
 public class CamControl : MonoBehaviour
 {
     // переменные для чувствительности мыши для осей X и Y
-    public float sensX;
-    public float sensY;
+    [SerializeField] private float sensX;
+    [SerializeField] private float sensY;
 
     // ориентация игрока в пространстве
-    public Transform orientation;
+    [SerializeField] private Transform orientation;
 
     // поворот по координатам X и Y
-    float xRotation;
-    float yRotation;
+    private float xRotation;
+    private float yRotation;
 
+    private float mouseX;
+    private float mouseY;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -24,11 +26,12 @@ public class CamControl : MonoBehaviour
 
     private void Update()
     {
-        // получение координат мыши
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+    }
 
-        // поворот камеры согласно позиции мыши
+    private void FixedUpdate()
+    {
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
