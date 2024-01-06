@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f6f236184f8124f8633e561927c2ce, type: 3}
+  m_Name: RawMeat
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 8dcf2b6c2499ce9448e8d5ca6835565a, type: 3}
+  itemPrefab: {fileID: 2396417316236758873, guid: 51065c6f8c4a9c246a885a90516c6159, type: 3}
+  _name: RawMeat
