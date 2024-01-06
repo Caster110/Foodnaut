@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Transform inventoryPanel;
     [SerializeField] private Transform hotBarPanel;
     [SerializeField] private GameObject UI_inventoryPanel;
-    [SerializeField] private GameObject UI_crosshair;
+    [SerializeField] private GameObject UI_crosshair; // не тут/рассмотреть другие варианты
     [SerializeField] private float reachDistance = 2.5f;
     [SerializeField] private PlayerCamera playerCameraScript;
     [SerializeField] private Camera playerCamera;
