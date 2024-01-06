@@ -12,7 +12,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private void Start()
     {
         player = GameObject.Find("CameraPos").transform;
-        ImageTransform = GetComponent<RectTransform>();
+        ImageTransform = image.transform;
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -23,32 +23,48 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (thisSlot.itemData == null) //|| eventData.pointerPress == null)
+        if (thisSlot.itemData == null)
             return;
-        // ƒелаем так чтобы нажати€ мышкой не игнорировали эту картинку
-        GetComponent<Image>().raycastTarget = true;
-        // ƒелаем наш DraggableObject ребенком InventoryPanel чтобы DraggableObject был над другими слотами инвентор€
+        //GetComponent<Image>().raycastTarget = false;
         transform.SetParent(transform.parent.parent);
         //GetComponent<Canvas>().sortingOrder++;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //if (chosenSlot.itemData == null)
-            //return;
-        //GetComponentInChildren<Image>().raycastTarget = false;
-
-        //ѕоставить DraggableObject обратно в свой старый слот
+        //GetComponentInChildren<Image>().raycastTarget = true;
+        if (thisSlot.itemData == null)
+            return;
         transform.SetParent(thisSlot.transform);
         transform.position = thisSlot.transform.position;
-        if (eventData.pointerCurrentRaycast.gameObject.tag != "Inventory" && thisSlot.itemData != null)
+        bool targetSlotIsEmpty;
+        InventorySlot targetSlot;
+        GameObject targetSlotObject = eventData.pointerCurrentRaycast.gameObject;
+        if(targetSlotObject)
+            targetSlot = targetSlotObject.transform.parent.GetComponent<InventorySlot>();
+        else
+            targetSlot = null;
+            
+        if (targetSlotObject.transform.tag != "Slot" && targetSlotObject.transform.tag != "Inventory")
         {
-            GameObject throwed = Instantiate(thisSlot.itemData.itemPrefab, player.position + player.forward, Quaternion.identity);
+            Instantiate(thisSlot.itemData.itemPrefab, player.position + player.forward, Quaternion.identity);
             NullifySlotData();
+            Debug.Log("7");
         }
-        else if (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
+        else if (targetSlotObject.tag == "Inventory")
         {
-            ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
+            Debug.Log("6");
+            return;
+        }
+        else if (targetSlotIsEmpty = targetSlot.itemData == null)
+        {
+            Debug.Log("5");
+            ExchangeSlotData(targetSlot, targetSlotIsEmpty);
+        }
+        else
+        {
+            Debug.Log("8");
+            ExchangeSlotData(targetSlot, targetSlotIsEmpty);
         }
         //GetComponent<Canvas>().sortingOrder--;
     }
@@ -58,38 +74,32 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         image.sprite = null;
         image.color = new Color(1, 1, 1, 0);
     }
-    void ExchangeSlotData(InventorySlot newSlot)
+    private void ExchangeSlotData(InventorySlot targetSlot, bool targetSlotIsEmpty)
     {
-        // ¬ременно храним данные newSlot в отдельных переменных
-        ItemScriptableObject item = newSlot.itemData;
-        bool isEmpty = newSlot.itemData != null;
-        Image iconGO = newSlot.itemIcon;
-
-        // «амен€ем значени€ newSlot на значени€ oldSlot
-        newSlot.itemData = thisSlot.itemData;
-        if (thisSlot.itemData != null)
+        if (targetSlotIsEmpty)
         {
-            newSlot.SetIcon(thisSlot.itemIcon.GetComponent<Image>().sprite);
+            Debug.Log("4");
+            targetSlot.itemData = thisSlot.itemData;
+            targetSlot.SetIcon(image.sprite);
 
+            thisSlot.itemData = null;
+            image.sprite = null;
+            image.color = new Color(1, 1, 1, 0);
         }
         else
         {
-            newSlot.itemIcon.GetComponent<Image>().sprite = null;
-        }
+            Debug.Log("3");
+            ItemScriptableObject tempItem = targetSlot.itemData;
+            Image tempItemIcon = targetSlot.itemIcon;
+            //Debug.Log(tempItemIcon.sprite.ToString());
 
-        //newSlot.isEmpty = oldSlot.isEmpty;
+            targetSlot.itemData = thisSlot.itemData;
+            targetSlot.SetIcon(image.sprite);
+            thisSlot.itemData = tempItem;
 
-        // «амен€ем значени€ oldSlot на значени€ newSlot сохраненные в переменных
-        thisSlot.itemData = item;
-        if (isEmpty == false)
-        {
-            thisSlot.SetIcon(iconGO.GetComponent<Image>().sprite);
+            thisSlot.itemIcon = tempItemIcon;
+            //thisSlot.SetIcon(tempItemIcon.sprite); //problem
+            //Debug.Log(thisSlot.itemIcon.sprite.ToString());
         }
-        else
-        {
-            thisSlot.itemIcon.GetComponent<Image>().sprite = null;
-        }
-
-        //chosenSlot.isEmpty = isEmpty;
     }
 }

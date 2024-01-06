@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectible Item
   - Inventory
+  - Slot
   layers:
   - Default
   - TransparentFX
