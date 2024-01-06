@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f6f236184f8124f8633e561927c2ce, type: 3}
+  m_Name: RawPotato
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 43172271341c68743b3077194bd36ba8, type: 3}
+  itemPrefab: {fileID: 2396417316236758873, guid: 4eb638c522f094b4b94e3aae01b286e0, type: 3}
+  _name: RawPotato

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 535103475578832293}
   m_Layer: 5
   m_Name: InevntorySlot
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763b9a8268606b04db8dfa092c68c37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  itemData: {fileID: 0}
+  itemIcon: {fileID: 7741368400865255680}
 --- !u!1 &5669686456090077703
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,9 +102,10 @@ GameObject:
   - component: {fileID: 8961350962475134042}
   - component: {fileID: 2438534514139380631}
   - component: {fileID: 7741368400865255680}
+  - component: {fileID: 2846263266964132511}
   m_Layer: 5
   m_Name: Item_Image
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +118,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5669686456090077703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -165,3 +167,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2846263266964132511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669686456090077703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e57958dc532e04d95ad5a906382d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisSlot: {fileID: 535103475578832293}
+  image: {fileID: 7741368400865255680}

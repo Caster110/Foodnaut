@@ -5,6 +5,6 @@ public class ItemScriptableObject : ScriptableObject
 {
     public Sprite icon;
     protected ItemType itemType; //private?
-    [SerializeField] private GameObject itemPrefab;
+    public GameObject itemPrefab;
     [SerializeField] private string _name;
 }
