@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class ItemCollector : MonoBehaviour
 {
     public List<InventorySlot> slots = new List<InventorySlot>(); //узнать можно ли приват
     [SerializeField] private Transform inventoryPanel;
@@ -33,9 +33,15 @@ public class InventoryManager : MonoBehaviour
         TrySwitchInventory();   
 
         GameObject collectibleElement;
-        if (collectibleElement = CheckObjectsToCollect())
+        if (isOpened)
+        {
+            UI_crosshair.SetActive(false);
+            return;
+        }
+        else if (collectibleElement = CheckObjectsToCollect())
         {
             TryCollect(collectibleElement);
+            UI_crosshair.SetActive(true);
         }
     
     }
@@ -71,7 +77,6 @@ public class InventoryManager : MonoBehaviour
             if (hit.transform.tag == "Collectible Item")
             {
                 Debug.DrawRay(ray.origin, ray.direction * reachDistance, Color.blue);
-                UI_crosshair.SetActive(true);
                 return hit.transform.gameObject;
             }
         }
@@ -95,10 +100,9 @@ public class InventoryManager : MonoBehaviour
         bool itemWasAdded = false;
         foreach (InventorySlot slot in slots)
         {
-            if(slot.itemData == null)
+            if(slot.isEmpty)
             {
-                slot.itemData = item;
-                slot.SetIcon(item.icon);
+                slot.Set(item.icon, item);
                 itemWasAdded = true;
                 break;
             }

@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,88 +5,78 @@ using UnityEngine.UI;
 public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     [SerializeField] private InventorySlot thisSlot;
-    [SerializeField] private Image image;
+    [SerializeField] private Image itemPlacementImage;
+    private Image itemImage;
     private Transform player;
-    private RectTransform ImageTransform;
+    private RectTransform itemImageTransform;
+
 
     private void Start()
     {
         player = GameObject.Find("CameraPos").transform;
-        ImageTransform = image.gameObject.GetComponent<RectTransform>();
+        itemImage = thisSlot.GetIcon();
+        itemImageTransform = itemImage.GetComponent<RectTransform>();
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (thisSlot.isEmpty)
+            return;
+        itemImage.transform.SetParent(transform.parent.parent.parent);
+        itemPlacementImage.raycastTarget = false;
+        Cursor.visible = false;
     }
     public void OnDrag(PointerEventData eventData)
     {
-        if (thisSlot.itemData == null)
+        if (thisSlot.isEmpty)
             return;
-        ImageTransform.position += new Vector3(eventData.delta.x, eventData.delta.y);
+        itemImageTransform.position += new Vector3(eventData.delta.x, eventData.delta.y);
     }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (thisSlot.itemData == null)
-            return;
-        transform.SetParent(transform.parent.parent.parent);
-        image.raycastTarget = false;
-    }
-
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (thisSlot.itemData == null)
+        if (thisSlot.isEmpty)
             return;
-        image.raycastTarget = true;
-        transform.SetParent(thisSlot.transform);
-        transform.position = thisSlot.transform.position;
-        bool targetSlotIsEmpty;
+        Cursor.visible = true; //сделать отдельную часть с подсветкой, видимостью мышки тд визуалом через наблюдателя, event ил что там было
+        itemPlacementImage.raycastTarget = true;
+        itemImage.transform.SetParent(thisSlot.transform);
+        itemImage.transform.position = thisSlot.transform.position;
         GameObject targetObject = eventData.pointerCurrentRaycast.gameObject;
         InventorySlot targetSlot;
 
         if (targetObject)
         {
-            if (targetObject.tag == "Slot")
+            if (targetObject.tag == "Slot Placement")
             {
                 targetSlot = targetObject.transform.parent.GetComponent<InventorySlot>();
-                if (targetSlotIsEmpty = targetSlot.itemData == null)
-                    ExchangeSlotData(targetSlot, targetSlotIsEmpty);
+                if (targetSlot.isEmpty)
+                    ExchangeSlotData(targetSlot, targetSlot.isEmpty);
                 else
-                    ExchangeSlotData(targetSlot, targetSlotIsEmpty);
+                    ExchangeSlotData(targetSlot, targetSlot.isEmpty);
             }
-            else
-            { 
+            else if (targetObject.tag == "Inventrory")
+            {
                 return;
             }
         }
         else
         {
-            Instantiate(thisSlot.itemData.itemPrefab, player.position + player.forward, Quaternion.identity);
-            NullifySlotData();
+            Instantiate(thisSlot.GetData().itemPrefab, player.position + player.forward, Quaternion.identity);
+            thisSlot.Clear();
         }
-    }
-    void NullifySlotData()
-    {
-        thisSlot.itemData = null;
-        image.sprite = null;
-        image.color = new Color(1, 1, 1, 0);
     }
     private void ExchangeSlotData(InventorySlot targetSlot, bool targetSlotIsEmpty)
     {
         if (targetSlotIsEmpty)
         {
-            targetSlot.itemData = thisSlot.itemData;
-            targetSlot.SetIcon(image.sprite);
-
-            thisSlot.itemData = null;
-            image.sprite = null;
-            image.color = new Color(1, 1, 1, 0);
+            targetSlot.Set(itemImage.sprite, thisSlot.GetData());
+            thisSlot.Clear();
         }
         else
         {
-            ItemScriptableObject tempItem = targetSlot.itemData;
-            Sprite tempItemIcon = targetSlot.itemIcon.sprite;
-            targetSlot.itemData = thisSlot.itemData;
-            targetSlot.SetIcon(image.sprite);
-            thisSlot.itemData = tempItem;
-            thisSlot.SetIcon(tempItemIcon);
-            tempItem = null;
+            ItemScriptableObject tempItemData = targetSlot.GetData();
+            Sprite tempItemIcon = targetSlot.GetIcon().sprite;
+            targetSlot.Set(itemImage.sprite, thisSlot.GetData());
+            thisSlot.Set(tempItemIcon, tempItemData);
+            tempItemData = null;
             tempItemIcon = null;
         }
     }
