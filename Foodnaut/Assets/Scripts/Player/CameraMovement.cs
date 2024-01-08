@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
-    [SerializeField] private Transform orientation;
-
+    [SerializeField] private Transform playerTransform;
     private float xRotation;
     private float yRotation;
     private float mouseX;
@@ -15,20 +14,23 @@ public class PlayerCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
     private void Update()
+    {
+        GetKeys();
+    }
+    private void GetKeys()
     {
         mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
     }
-
     private void FixedUpdate()
     {
+        transform.localPosition = new Vector3(0, 0.655f, -0.057f);
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        playerTransform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 }

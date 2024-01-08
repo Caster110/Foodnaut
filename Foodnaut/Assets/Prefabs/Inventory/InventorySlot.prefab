@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2963635515542506215}
   - component: {fileID: 6939669095054611657}
   - component: {fileID: 535103475578832293}
+  - component: {fileID: 8262531422684402739}
   m_Layer: 5
-  m_Name: InevntorySlot
+  m_Name: InventorySlot
   m_TagString: Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,8 +91,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763b9a8268606b04db8dfa092c68c37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 5669686456090077703}
-  itemIconPicture: {fileID: 7741368400865255680}
+  itemIconImage: {fileID: 7741368400865255680}
+--- !u!114 &8262531422684402739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022559948955070318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1a561cffed96e41bc9374ba67182bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotImage: {fileID: 6939669095054611657}
 --- !u!1 &4123094827467277849
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,8 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e57958dc532e04d95ad5a906382d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotVisualComponent: {fileID: 8262531422684402739}
   thisSlot: {fileID: 535103475578832293}
   itemPlacementImage: {fileID: 3926543103335046765}
+  itemImage: {fileID: 7741368400865255680}
+  itemImageTransform: {fileID: 8961350962475134042}
 --- !u!1 &5669686456090077703
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

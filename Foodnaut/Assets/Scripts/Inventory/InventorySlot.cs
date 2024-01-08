@@ -3,25 +3,27 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    [SerializeField] private GameObject itemIcon;
-    [SerializeField] private Image itemIconPicture;
+    [SerializeField] private Image itemIconImage;
     private ItemScriptableObject itemData;
     public bool isEmpty => itemData == null;
-    public void Set(Sprite iconSprite, ItemScriptableObject info)
+    public ItemScriptableObject GetData() { return itemData; }
+    public void SetData(ItemScriptableObject itemInfo)
     {
-        itemIconPicture.color = new Color(1,1,1,255);
-        itemIconPicture.sprite = iconSprite;
-        RectTransform iconRectTransform = itemIconPicture.GetComponent<RectTransform>();
+        itemData = itemInfo;
+        SetImage();
+    }
+    private void SetImage()
+    {
+        itemIconImage.color = new Color(1,1,1,255);
+        itemIconImage.sprite = itemData.icon;
+        RectTransform iconRectTransform = itemIconImage.GetComponent<RectTransform>();
         iconRectTransform.anchorMin = Vector2.zero;
         iconRectTransform.anchorMax = Vector2.one;
-        itemData = info;
     }
     public void Clear()
     {
-        itemIconPicture.color = new Color(1, 1, 1, 0);
-        itemIconPicture.sprite = null;
+        itemIconImage.sprite = null;
+        itemIconImage.color = new Color(1, 1, 1, 0);
         itemData = null;
     }
-    public ItemScriptableObject GetData() { return itemData; }
-    public Image GetIcon() { return itemIconPicture; }
 }

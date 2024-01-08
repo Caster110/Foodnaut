@@ -4,18 +4,15 @@ using UnityEngine.UI;
 
 public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
+    [SerializeField] private SlotVisualComponent slotVisualComponent;
     [SerializeField] private InventorySlot thisSlot;
     [SerializeField] private Image itemPlacementImage;
-    private Image itemImage;
-    private Transform player;
-    private RectTransform itemImageTransform;
-
-
+    [SerializeField] private Image itemImage;
+    [SerializeField] private RectTransform itemImageTransform;
+    private Transform playerFace;
     private void Start()
     {
-        player = GameObject.Find("CameraPos").transform;
-        itemImage = thisSlot.GetIcon();
-        itemImageTransform = itemImage.GetComponent<RectTransform>();
+        playerFace = GameObject.Find("Camera").transform;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -23,7 +20,10 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             return;
         itemImage.transform.SetParent(transform.parent.parent.parent);
         itemPlacementImage.raycastTarget = false;
-        Cursor.visible = false;
+
+        Vector3 toCenter = Input.mousePosition - itemImage.transform.position;
+        itemImageTransform.position += toCenter;
+        slotVisualComponent.OnTakenItem();
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -35,7 +35,6 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (thisSlot.isEmpty)
             return;
-        Cursor.visible = true; //сделать отдельную часть с подсветкой, видимостью мышки тд визуалом через наблюдателя, event ил что там было
         itemPlacementImage.raycastTarget = true;
         itemImage.transform.SetParent(thisSlot.transform);
         itemImage.transform.position = thisSlot.transform.position;
@@ -52,32 +51,30 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 else
                     ExchangeSlotData(targetSlot, targetSlot.isEmpty);
             }
-            else if (targetObject.tag == "Inventrory")
-            {
-                return;
-            }
         }
         else
         {
-            Instantiate(thisSlot.GetData().itemPrefab, player.position + player.forward, Quaternion.identity);
-            thisSlot.Clear();
+            ThrowItem();
         }
+        slotVisualComponent.OnTakenItem();
+    }
+    private void ThrowItem()
+    {
+        Instantiate(thisSlot.GetData().itemPrefab, playerFace.position + playerFace.forward, Quaternion.identity);
+        thisSlot.Clear();
     }
     private void ExchangeSlotData(InventorySlot targetSlot, bool targetSlotIsEmpty)
     {
         if (targetSlotIsEmpty)
         {
-            targetSlot.Set(itemImage.sprite, thisSlot.GetData());
+            targetSlot.SetData(thisSlot.GetData());
             thisSlot.Clear();
         }
         else
         {
             ItemScriptableObject tempItemData = targetSlot.GetData();
-            Sprite tempItemIcon = targetSlot.GetIcon().sprite;
-            targetSlot.Set(itemImage.sprite, thisSlot.GetData());
-            thisSlot.Set(tempItemIcon, tempItemData);
-            tempItemData = null;
-            tempItemIcon = null;
+            targetSlot.SetData(thisSlot.GetData());
+            thisSlot.SetData(tempItemData);
         }
     }
 }

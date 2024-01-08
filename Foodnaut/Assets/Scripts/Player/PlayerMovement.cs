@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speedWalk;
     [SerializeField] private float gravity;
     [SerializeField] private float jumpPower;
     [SerializeField] private float speedRun;
+    [SerializeField] private CharacterController characterController;
 
     private float keyHorizontal;
     private float keyVertical;
@@ -13,7 +14,6 @@ public class NewBehaviourScript : MonoBehaviour
     private bool keyJump;
     private bool keyRun;
 
-    private CharacterController characterController;
     private Vector3 walkDirection;
     private Vector3 velocity;
     private float currentSpeed;
@@ -21,7 +21,6 @@ public class NewBehaviourScript : MonoBehaviour
     private void Start()
     {
         currentSpeed = speedWalk;
-        characterController = GetComponent<CharacterController>();
     }
 
     private void Update()

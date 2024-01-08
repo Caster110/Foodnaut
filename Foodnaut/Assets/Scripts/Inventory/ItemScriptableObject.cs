@@ -1,10 +1,10 @@
 using UnityEngine;
-
-public enum ItemType {CookedFood, ExpirationableIngredientItem, UnexpirationableIngredientItem, Instrument };
+public enum ItemType {CookedFood, ExpirationableIngredient, UnexpirationableIngredient, Instrument};
 public class ItemScriptableObject : ScriptableObject
 {
-    public Sprite icon;
-    protected ItemType itemType; //private?
-    public GameObject itemPrefab;
+    [SerializeField] private string id;
     [SerializeField] private string _name;
+    [SerializeField] private ItemType itemType; //private?
+    public Sprite icon;
+    public GameObject itemPrefab;
 }

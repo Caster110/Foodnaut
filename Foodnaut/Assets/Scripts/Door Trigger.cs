@@ -4,43 +4,43 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
-    public GameObject door; // Объект двери
-    public float slideDistance = -3.15f; // Дистанция, на которую должна сдвинуться дверь
-    public float slideSpeed = 1.0f; // Скорость сдвига двери
-
-    private Vector3 _closedPosition; // Закрытое положение двери
-    private Vector3 _openPosition; // Открытое положение двери
-    private bool _isOpen = false; // Состояние двери
+    [SerializeField] private GameObject doorObject;
+    [SerializeField] private float slideDistance = -3.15f;
+    [SerializeField] private float slideSpeed = 1.2f; 
+    
+    private bool isOpen = false;
+    private Vector3 closedPosition;
+    private Vector3 openPosition;
 
     private void Start()
     {
-        _closedPosition = door.transform.position;
-        _openPosition = _closedPosition + new Vector3(0, 0, slideDistance);
+        closedPosition = doorObject.transform.position;
+        openPosition = closedPosition + new Vector3(0, 0, slideDistance);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!_isOpen && other.CompareTag("Player"))
+        if (isOpen == false && other.CompareTag("Player"))
         {
-            _isOpen = true;
-            StartCoroutine(SlideDoor(_openPosition));
+            isOpen = true;
+            StartCoroutine(SlideDoor(openPosition));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (_isOpen && other.CompareTag("Player"))
+        if (isOpen && other.CompareTag("Player"))
         {
-            _isOpen = false;
-            StartCoroutine(SlideDoor(_closedPosition));
+            isOpen = false;
+            StartCoroutine(SlideDoor(closedPosition));
         }
     }
 
     private IEnumerator SlideDoor(Vector3 targetPosition)
     {
-        while (Vector3.Distance(door.transform.position, targetPosition) > 0.01f)
+        while (Vector3.Distance(doorObject.transform.position, targetPosition) > 0.01f)
         {
-            door.transform.position = Vector3.MoveTowards(door.transform.position, targetPosition, slideSpeed * Time.deltaTime);
+            doorObject.transform.position = Vector3.MoveTowards(doorObject.transform.position, targetPosition, slideSpeed * Time.deltaTime);
             yield return null;
         }
     }
