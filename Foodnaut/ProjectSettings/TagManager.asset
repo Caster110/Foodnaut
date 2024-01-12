@@ -8,6 +8,7 @@ TagManager:
   - Inventory
   - Slot
   - Slot Placement
+  - Craft Station
   layers:
   - Default
   - TransparentFX

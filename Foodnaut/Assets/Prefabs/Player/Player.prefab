@@ -192,6 +192,9 @@ GameObject:
   - component: {fileID: 954976236531820795}
   - component: {fileID: 7796345716631670178}
   - component: {fileID: 5961940275816023883}
+  - component: {fileID: 8033774222959334034}
+  - component: {fileID: 2115274498032373381}
+  - component: {fileID: 8213979070704286064}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -245,11 +248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUIController: {fileID: 0}
-  playerCamera: {fileID: 3924153565944334188}
   inventoryPanel: {fileID: 0}
   hotBarPanel: {fileID: 0}
-  UI_crosshair: {fileID: 0}
-  reachDistance: 2.5
+  raycastDetector: {fileID: 8033774222959334034}
 --- !u!33 &954976236531820795
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -326,3 +327,47 @@ CharacterController:
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8033774222959334034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014540889319500229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94372c0324a99a48a6b96fafcdcc0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reachDistance: 2.5
+  playerCamera: {fileID: 3924153565944334188}
+  inventoryUIController: {fileID: 0}
+--- !u!114 &2115274498032373381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014540889319500229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a462e47416a9924428e80aae5e4611aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDetector: {fileID: 8033774222959334034}
+  craftStationUI: {fileID: 0}
+--- !u!114 &8213979070704286064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014540889319500229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83920350489a184dbfee3e4b87815d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCameraPosition: {fileID: 8110039477261589139}
+  cameraMovementScript: {fileID: 6549694312828392602}
+  playerMovementScript: {fileID: 8699103697051577488}

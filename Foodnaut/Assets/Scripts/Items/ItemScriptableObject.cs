@@ -1,5 +1,5 @@
 using UnityEngine;
-public enum ItemType {CookedFood, ExpirationableIngredient, UnexpirationableIngredient, Instrument};
+public enum ItemType {CookedFood, ExpirationableIngredient, UnexpirationableIngredient, Instrument, KitchenAppliance};
 public class ItemScriptableObject : ScriptableObject
 {
     [SerializeField] private string id;

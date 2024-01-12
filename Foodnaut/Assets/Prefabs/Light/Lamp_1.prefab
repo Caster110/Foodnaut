@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2584323840435890201}
   - component: {fileID: 7031770256177038448}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +123,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6989280574724643626}
   - {fileID: 860040797016147055}
   - {fileID: 2584323840435890201}
   m_Father: {fileID: 0}
@@ -191,12 +192,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: LampBody
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b496f92889b0d2140b6cb19895998b8d, type: 3}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b496f92889b0d2140b6cb19895998b8d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6989280574724643626}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b496f92889b0d2140b6cb19895998b8d, type: 3}
 --- !u!4 &860040797016147055 stripped
@@ -210,31 +212,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 860040797016147055}
+    m_TransformParent: {fileID: 714557455512536019}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.0109997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.99
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -275,6 +277,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
+      propertyPath: m_Name
+      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 7b89a75849f73874399eb7fe6251e86c, type: 3}
       propertyPath: m_Layer

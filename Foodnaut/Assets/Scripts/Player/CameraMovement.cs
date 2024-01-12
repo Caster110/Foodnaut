@@ -9,6 +9,7 @@ public class CameraMovement : MonoBehaviour
     private float yRotation;
     private float mouseX;
     private float mouseY;
+    private Vector3 localPosition = new Vector3(0, 0.655f, -0.057f);
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -20,12 +21,12 @@ public class CameraMovement : MonoBehaviour
     }
     private void GetKeys()
     {
-        mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
+        mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
     }
     private void FixedUpdate()
     {
-        transform.localPosition = new Vector3(0, 0.655f, -0.057f);
+        transform.localPosition = localPosition;
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

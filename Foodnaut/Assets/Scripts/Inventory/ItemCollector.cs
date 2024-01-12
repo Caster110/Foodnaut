@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] private InventoryUIController inventoryUIController;
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] private UIController inventoryUIController;
     [SerializeField] private Transform inventoryPanel;
     [SerializeField] private Transform hotBarPanel;
-    [SerializeField] private GameObject UI_crosshair; // не тут/рассмотреть другие варианты
-    [SerializeField] private float reachDistance = 2.5f;
-    private List<InventorySlot> slots = new List<InventorySlot>(); //узнать можно ли приват
+    [SerializeField] private RaycastDetector raycastDetector;
+    private List<InventorySlot> slots = new List<InventorySlot>(); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    private const bool isCollectibleItemRequested = true;
 
     private void Start()
     {
@@ -28,29 +27,8 @@ public class ItemCollector : MonoBehaviour
     private void Update()
     {
         GameObject collectibleElement;
-        if (inventoryUIController.isOpened)
-        {
-            UI_crosshair.SetActive(false);
-            return;
-        }
-        else if (collectibleElement = CheckObjectsToCollect())
-        {
+        if (collectibleElement = raycastDetector.GetDetectedObject(isCollectibleItemRequested))
             TryCollect(collectibleElement);
-            UI_crosshair.SetActive(true);
-        }
-    }
-    private GameObject CheckObjectsToCollect()
-    {
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, reachDistance))
-        {
-            if (hit.transform.tag == "Collectible Item")
-                return hit.transform.gameObject;
-        }
-        UI_crosshair.SetActive(false);
-        return null;
     }
     private void TryCollect(GameObject target)
     {

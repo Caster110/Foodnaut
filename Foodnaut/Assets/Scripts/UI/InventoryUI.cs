@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryUIController : MonoBehaviour, IDragHandler
+public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject UI_backpackPanel;
-    [SerializeField] private CameraMovement playerCameraScript;
+    [SerializeField] private CameraMovement cameraMovement;
     [HideInInspector] public bool isOpened = false;
+    private bool isTabKeyPressed => Input.GetKeyDown(KeyCode.Tab);
+    private bool isFKeyPresed => Input.GetKeyDown(KeyCode.F);
+    private bool isEscKeyPresed => Input.GetKeyDown(KeyCode.Escape);
+    private bool isMousePressed => Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2);
+    private CraftStationUI currentStationUI;
     private void Start()
     {
         UI_backpackPanel.SetActive(false);
@@ -16,10 +21,10 @@ public class InventoryUIController : MonoBehaviour, IDragHandler
     }
     private void TrySwitchInventory()
     {
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
+        if (isMousePressed)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (isTabKeyPressed)
         {
             isOpened = !isOpened;
             if (isOpened)
@@ -27,19 +32,15 @@ public class InventoryUIController : MonoBehaviour, IDragHandler
                 UI_backpackPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                playerCameraScript.enabled = false;
+                cameraMovement.enabled = false;
             }
             else
             {
                 UI_backpackPanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                playerCameraScript.enabled = true;
+                cameraMovement.enabled = true;
             }
         }
-    }
-    public void OnDrag(PointerEventData eventData)
-    {
-        Debug.Log(eventData);
     }
 }
