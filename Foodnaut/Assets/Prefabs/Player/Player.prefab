@@ -190,9 +190,8 @@ GameObject:
   - component: {fileID: 8699103697051577488}
   - component: {fileID: 2678587897399008666}
   - component: {fileID: 8033774222959334034}
-  - component: {fileID: 2115274498032373381}
-  - component: {fileID: 8213979070704286064}
-  - component: {fileID: 4775414746525975130}
+  - component: {fileID: 6238346548963209308}
+  - component: {fileID: 3985044576980936427}
   - component: {fileID: 5961940275816023883}
   - component: {fileID: 7796345716631670178}
   - component: {fileID: 954976236531820795}
@@ -248,7 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c495a0d0982032c45b457d817c3d8d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryUIController: {fileID: 4775414746525975130}
   inventoryPanel: {fileID: 0}
   hotBarPanel: {fileID: 0}
   raycastDetector: {fileID: 8033774222959334034}
@@ -266,9 +264,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reachDistance: 2.5
   playerCamera: {fileID: 3924153565944334188}
-  inventoryUIController: {fileID: 0}
+  inventoryUI: {fileID: 0}
   crosshairUIController: {fileID: 0}
---- !u!114 &2115274498032373381
+--- !u!114 &6238346548963209308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,27 +275,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6014540889319500229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a462e47416a9924428e80aae5e4611aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 667c27d412dbb904ca63507be4d86033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastDetector: {fileID: 8033774222959334034}
-  craftStationUI: {fileID: 8213979070704286064}
---- !u!114 &8213979070704286064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6014540889319500229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83920350489a184dbfee3e4b87815d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCameraPosition: {fileID: 5876469721795170699}
   cameraMovementScript: {fileID: 6549694312828392602}
   playerMovementScript: {fileID: 8699103697051577488}
---- !u!114 &4775414746525975130
+  raycastDetector: {fileID: 8033774222959334034}
+  inputChecker: {fileID: 3985044576980936427}
+  itemPlayerStorage: {fileID: 2678587897399008666}
+  _UIController: {fileID: 0}
+--- !u!114 &3985044576980936427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,12 +293,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6014540889319500229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37cd4cd2e2e002d40981bc5c04e452a1, type: 3}
+  m_Script: {fileID: 11500000, guid: ce522419d5df1b446b6ce13e62f676ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI_backpackPanel: {fileID: 0}
-  cameraMovement: {fileID: 6549694312828392602}
-  isOpened: 0
+  UIController: {fileID: 0}
 --- !u!143 &5961940275816023883
 CharacterController:
   m_ObjectHideFlags: 0

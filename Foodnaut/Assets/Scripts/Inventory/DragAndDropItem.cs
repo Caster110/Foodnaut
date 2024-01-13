@@ -6,9 +6,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     [SerializeField] private SlotVisualComponent slotVisualComponent;
     [SerializeField] private InventorySlot thisSlot;
-    //[SerializeField] private Image itemPlacementImage;
     [SerializeField] private Image itemImage;
-    [SerializeField] private RectTransform itemImageTransform;
+    [SerializeField] private RectTransform itemTransform;
     private Transform playerFace;
     private void Start()
     {
@@ -21,15 +20,16 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         itemImage.transform.SetParent(transform.parent.parent.parent);
         itemImage.raycastTarget = false;
 
-        Vector3 toCenter = Input.mousePosition - itemImage.transform.position;
-        itemImageTransform.position += toCenter;
+        /*Vector3 toCenter = Input.mousePosition - itemImage.transform.position;
+        itemTransform.position += toCenter;*/
+        itemTransform.position = Input.mousePosition;
         slotVisualComponent.OnTakenItem();
     }
     public void OnDrag(PointerEventData eventData)
     {
         if (thisSlot.isEmpty)
             return;
-        itemImageTransform.position += new Vector3(eventData.delta.x, eventData.delta.y);
+        itemTransform.position += new Vector3(eventData.delta.x, eventData.delta.y);
     }
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -42,7 +42,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         InventorySlot targetSlot;
 
         if (targetObject)
-            if (targetObject.tag == "Slot")
+        {
+            if (targetObject.tag == "ItemPlacement")
             {
                 targetSlot = targetObject.transform.parent.GetComponent<InventorySlot>();
                 if (targetSlot.isEmpty)
@@ -50,6 +51,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 else
                     ExchangeSlotData(targetSlot, targetSlot.isEmpty);
             }
+        }
         else
             ThrowItem();
         slotVisualComponent.OnTakenItem();

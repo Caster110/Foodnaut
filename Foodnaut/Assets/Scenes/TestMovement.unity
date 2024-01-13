@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 221563979}
   m_Layer: 5
   m_Name: Hotbar_Panel
-  m_TagString: Inventory
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -866,7 +866,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 294028803}
-  - component: {fileID: 294028804}
   m_Layer: 5
   m_Name: Inventory_Panel
   m_TagString: Untagged
@@ -895,21 +894,6 @@ RectTransform:
   m_AnchoredPosition: {x: -560, y: 400}
   m_SizeDelta: {x: 970, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &294028804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294028802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 791d39e0210a75c4ca3e639f8d72d3e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UI_backpackPanel: {fileID: 1855458369}
-  cameraMovement: {fileID: 1449028598999637602}
-  isOpened: 0
 --- !u!1001 &317485789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1867,6 +1851,7 @@ GameObject:
   - component: {fileID: 782259081}
   - component: {fileID: 782259083}
   - component: {fileID: 782259082}
+  - component: {fileID: 782259085}
   m_Layer: 5
   m_Name: UI_Panel
   m_TagString: Untagged
@@ -1933,6 +1918,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782259080}
   m_CullTransparentMesh: 1
+--- !u!114 &782259085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782259080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791d39e0210a75c4ca3e639f8d72d3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIBackpack_Panel: {fileID: 1855458369}
+  crosshair: {fileID: 1174653291}
 --- !u!1001 &819057512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2076,17 +2075,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4755218590626841109, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
   m_PrefabInstance: {fileID: 1449028598999637601}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &839951000 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8213979070704286064, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
-  m_PrefabInstance: {fileID: 1449028598999637601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83920350489a184dbfee3e4b87815d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &872817740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047074663693418116, guid: 4eb638c522f094b4b94e3aae01b286e0, type: 3}
@@ -4390,8 +4378,8 @@ GameObject:
   - component: {fileID: 1855458372}
   - component: {fileID: 1855458371}
   m_Layer: 5
-  m_Name: Baclpack_Panel
-  m_TagString: Inventory
+  m_Name: Backpack_Panel
+  m_TagString: ClosableUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5336,6 +5324,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 593289466}
     m_Modifications:
+    - target: {fileID: -3696618179397408190, guid: 5685f08eda20d3440b76dc248009b89b, type: 3}
+      propertyPath: playerCameraPosition
+      value: 
+      objectReference: {fileID: 383887949}
     - target: {fileID: 1669409791172904145, guid: 5685f08eda20d3440b76dc248009b89b, type: 3}
       propertyPath: m_Name
       value: Kitchen_Stove
@@ -5769,7 +5761,7 @@ PrefabInstance:
     - target: {fileID: 2115274498032373381, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: craftStationUI
       value: 
-      objectReference: {fileID: 839951000}
+      objectReference: {fileID: 0}
     - target: {fileID: 2678587897399008666, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: hotBarPanel
       value: 
@@ -5806,6 +5798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera position
       objectReference: {fileID: 0}
+    - target: {fileID: 3985044576980936427, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
+      propertyPath: UIController
+      value: 
+      objectReference: {fileID: 782259085}
     - target: {fileID: 4755218590626841109, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.87
@@ -5854,6 +5850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6238346548963209308, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
+      propertyPath: _UIController
+      value: 
+      objectReference: {fileID: 782259085}
     - target: {fileID: 6549694312828392602, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: sensX
       value: 1200
@@ -5869,7 +5869,7 @@ PrefabInstance:
     - target: {fileID: 8033774222959334034, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 1449028598999637603}
+      objectReference: {fileID: 782259085}
     - target: {fileID: 8033774222959334034, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: crosshairUIController
       value: 
@@ -5877,7 +5877,7 @@ PrefabInstance:
     - target: {fileID: 8033774222959334034, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: inventoryUIController
       value: 
-      objectReference: {fileID: 294028804}
+      objectReference: {fileID: 0}
     - target: {fileID: 8213979070704286064, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: playerCameraPosition
       value: 
@@ -5892,28 +5892,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
---- !u!114 &1449028598999637602 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6549694312828392602, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
-  m_PrefabInstance: {fileID: 1449028598999637601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383887949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b64abffc295c9b4ab9325cba7bcda1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1449028598999637603 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4775414746525975130, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
-  m_PrefabInstance: {fileID: 1449028598999637601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37cd4cd2e2e002d40981bc5c04e452a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7327530947779672588
 PrefabInstance:
   m_ObjectHideFlags: 0

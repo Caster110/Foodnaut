@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 8997669591110950535}
   m_Layer: 5
   m_Name: Item_Image
-  m_TagString: Slot
+  m_TagString: ItemPlacement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,4 +195,4 @@ MonoBehaviour:
   slotVisualComponent: {fileID: 8262531422684402739}
   thisSlot: {fileID: 535103475578832293}
   itemImage: {fileID: 7741368400865255680}
-  itemImageTransform: {fileID: 8961350962475134042}
+  itemTransform: {fileID: 8961350962475134042}
