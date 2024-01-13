@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         bool groundCheck = characterController.isGrounded;
-        walkDirection = keyHorizontal * transform.right + keyVertical * transform.forward;
+        walkDirection = (keyHorizontal * transform.right + keyVertical * transform.forward);//.normalized;
         TryJump(keyJump, groundCheck);
         TryRun(keyRun);
         TrySit(keySit);

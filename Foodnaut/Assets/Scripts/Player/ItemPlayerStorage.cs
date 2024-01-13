@@ -26,8 +26,7 @@ public class ItemPlayerStorage : MonoBehaviour
         foreach (InventorySlot slot in slots)
             if(slot.isEmpty)
             {
-                ItemScriptableObject itemData = target.GetComponent<Item>().data;
-                slot.SetData(itemData);
+                slot.SetData(target.GetComponent<Item>().data);
                 Destroy(target);
                 return;
             }

@@ -7,11 +7,12 @@ public class Interactor : MonoBehaviour
     [SerializeField] private InputChecker inputChecker;
     [SerializeField] private ItemPlayerStorage itemPlayerStorage;
     [SerializeField] private UIController _UIController;
+    [SerializeField] private GameObject playerCameraPosition;
     private void Update()
     {
         if (inputChecker.CanCloseUI())
         {
-            _UIController.CloseUI();
+            _UIController.CloseUI(playerCameraPosition);
             ActivateAllMovement();
             return;
         }
@@ -25,7 +26,7 @@ public class Interactor : MonoBehaviour
             else if (interactableObject = raycastDetector.GetDetectedObjectWithTag("CraftStation"))
             {
                 DeactivateAllMovement();
-                _UIController.OpenInteractableStation(interactableObject);
+                _UIController.OpenInteractableStation(interactableObject, playerCameraPosition);
             }
         }
         else if (inputChecker.CanOpenInventory())

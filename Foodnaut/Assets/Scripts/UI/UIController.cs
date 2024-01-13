@@ -17,23 +17,23 @@ public class UIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    public void CloseUI()
+    public void CloseUI(GameObject playerCameraPosition)
     {
         UIBackpack_Panel.SetActive(false);
         if (currentInteractableUI)
         {
-            currentInteractableUI.Off();
+            currentInteractableUI.Off(playerCameraPosition);
             currentInteractableUI = null;
         }
         crosshair.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    public void OpenInteractableStation(GameObject target)
+    public void OpenInteractableStation(GameObject target, GameObject playerCameraPosition)
     {
         UIBackpack_Panel.SetActive(true);
         currentInteractableUI = target.GetComponent<InteractableUI>();
-        currentInteractableUI.On(target.transform.GetChild(0));
+        currentInteractableUI.On(playerCameraPosition);
         crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

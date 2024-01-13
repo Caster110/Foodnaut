@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83920350489a184dbfee3e4b87815d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCameraPosition: {fileID: 0}
+  craftStationCameraPosition: {fileID: 3804389691302992949}
 --- !u!4 &2044986008677375595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8f1e70d61c16a9f4ca97e1cfa3901955, type: 3}
