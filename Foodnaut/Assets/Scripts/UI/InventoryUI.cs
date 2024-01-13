@@ -17,9 +17,9 @@ public class InventoryUI : MonoBehaviour
     }
     private void Update()
     {
-        TrySwitchInventory();
+        TryToggleInventory();
     }
-    private void TrySwitchInventory()
+    private void TryToggleInventory()
     {
         if (isMousePressed)
             return;

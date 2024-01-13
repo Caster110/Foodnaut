@@ -21,8 +21,8 @@ public class CameraMovement : MonoBehaviour
     }
     private void GetKeys()
     {
-        mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
-        mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensY;
+        mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
     }
     private void FixedUpdate()
     {

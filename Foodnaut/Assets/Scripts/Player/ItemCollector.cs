@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] private UIController inventoryUIController;
     [SerializeField] private Transform inventoryPanel;
     [SerializeField] private Transform hotBarPanel;
     [SerializeField] private RaycastDetector raycastDetector;
-    private List<InventorySlot> slots = new List<InventorySlot>(); //������ ����� �� ������
-    private const bool isCollectibleItemRequested = true;
-
+    private GameObject collectibleItem;
+    private List<InventorySlot> slots = new List<InventorySlot>();
     private void Start()
     {
         InitializeSlots();
@@ -26,30 +24,25 @@ public class ItemCollector : MonoBehaviour
     }
     private void Update()
     {
-        GameObject collectibleElement;
-        if (collectibleElement = raycastDetector.GetDetectedObject(isCollectibleItemRequested))
-            TryCollect(collectibleElement);
+        if (collectibleItem = raycastDetector.GetDetectedObjectWithTag("CollectibleItem"))
+            TryCollect(collectibleItem);
     }
     private void TryCollect(GameObject target)
     {
         if (Input.GetKeyDown(KeyCode.F))
-        {
             if (AddItem(target.GetComponent<Item>().data))
                 Destroy(target);
-        }
     }
     private bool AddItem(ItemScriptableObject itemData)
     {
         bool itemWasAdded = false;
         foreach (InventorySlot slot in slots)
-        {
             if(slot.isEmpty)
             {
                 slot.SetData(itemData);
                 itemWasAdded = true;
                 break;
             }
-        }
         return itemWasAdded;
     }
 }

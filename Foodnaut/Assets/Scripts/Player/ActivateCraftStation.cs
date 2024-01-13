@@ -8,11 +8,9 @@ public class ActivateCraftStation : MonoBehaviour
     [SerializeField] private CraftStationUI craftStationUI;
     private GameObject craftStation;
     private bool isActivated = false;
-    private const bool isCollectibleItemRequested = false;
-    
     private void Update()
     {
-        if (craftStation = raycastDetector.GetDetectedObject(isCollectibleItemRequested))
+        if (craftStation = raycastDetector.GetDetectedObjectWithTag("CraftStation"))
             TrySwitchMode(craftStation);
     }
 

@@ -6,7 +6,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     [SerializeField] private SlotVisualComponent slotVisualComponent;
     [SerializeField] private InventorySlot thisSlot;
-    [SerializeField] private Image itemPlacementImage;
+    //[SerializeField] private Image itemPlacementImage;
     [SerializeField] private Image itemImage;
     [SerializeField] private RectTransform itemImageTransform;
     private Transform playerFace;
@@ -19,7 +19,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (thisSlot.isEmpty)
             return;
         itemImage.transform.SetParent(transform.parent.parent.parent);
-        itemPlacementImage.raycastTarget = false;
+        itemImage.raycastTarget = false;
 
         Vector3 toCenter = Input.mousePosition - itemImage.transform.position;
         itemImageTransform.position += toCenter;
@@ -35,15 +35,14 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (thisSlot.isEmpty)
             return;
-        itemPlacementImage.raycastTarget = true;
+        itemImage.raycastTarget = true;
         itemImage.transform.SetParent(thisSlot.transform);
         itemImage.transform.position = thisSlot.transform.position;
         GameObject targetObject = eventData.pointerCurrentRaycast.gameObject;
         InventorySlot targetSlot;
 
         if (targetObject)
-        {
-            if (targetObject.tag == "Slot Placement")
+            if (targetObject.tag == "Slot")
             {
                 targetSlot = targetObject.transform.parent.GetComponent<InventorySlot>();
                 if (targetSlot.isEmpty)
@@ -51,11 +50,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 else
                     ExchangeSlotData(targetSlot, targetSlot.isEmpty);
             }
-        }
         else
-        {
             ThrowItem();
-        }
         slotVisualComponent.OnTakenItem();
     }
     private void ThrowItem()

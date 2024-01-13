@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collectible Item
   - Inventory
   - Slot
-  - Slot Placement
-  - Craft Station
+  - CollectibleItem
+  - CraftStation
+  - ItemPlacement
   layers:
   - Default
   - TransparentFX

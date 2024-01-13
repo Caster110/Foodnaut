@@ -6,11 +6,11 @@ public class CrosshairUIController : MonoBehaviour
     [SerializeField] private Image crosshairImage;
     private bool isWhite = true;
 
-    public void TryChangeColor(bool isInteractableObject)
+    public void TryChangeColor(bool triggerIsInteractableObject)
     {
-        if (isWhite && isInteractableObject)
+        if (isWhite && triggerIsInteractableObject)
             crosshairImage.color = Color.yellow;
-        else if (!isWhite && !isInteractableObject)
+        else if (!isWhite && !triggerIsInteractableObject)
             crosshairImage.color = Color.white;
         else
             return;

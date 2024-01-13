@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     private CraftStationUI currentStationUI;
     private void Start()
     {
-        UI_backpackPanel.SetActive(false);
+
     }
     private void Update()
     {

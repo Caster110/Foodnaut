@@ -13,12 +13,12 @@ public class SlotVisualComponent : MonoBehaviour, IPointerEnterHandler, IPointer
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ChangeColor();
+        slotImage.color = Color.grey;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        ChangeColor();
+        slotImage.color = slotDefaultColor;
     }
     public void OnTakenItem()
     {

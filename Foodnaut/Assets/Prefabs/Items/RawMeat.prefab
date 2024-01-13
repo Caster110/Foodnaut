@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7013660691071426290}
   m_Layer: 0
   m_Name: RawMeat
-  m_TagString: Collectible Item
+  m_TagString: CollectibleItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

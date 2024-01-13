@@ -1,27 +1,21 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class RaycastDetector : MonoBehaviour
 {
     [SerializeField] private float reachDistance = 2.5f;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private UIController inventoryUIController;
-    private CrosshairUIController crosshairUIController;
+    [SerializeField] private InventoryUI inventoryUI;
+    [SerializeField] private CrosshairUIController crosshairUIController;
     private GameObject detectedObject;
-    private bool isInteractableObject = true;
-    private bool isCollectibleItem = false;
-
-    public GameObject GetDetectedObject(bool isCollectibleItemRequested) 
+    private string detectedObjectType = null;
+    private readonly string[] interactableTypes = {"CraftStation", "CollectibleItem"};
+    public GameObject GetDetectedObjectWithTag(string tagOfRequestedObject) 
     {
-        if (isCollectibleItem && isCollectibleItemRequested)
-            return detectedObject;
-        else if (!isCollectibleItem && !isCollectibleItemRequested)
+        if (detectedObjectType == tagOfRequestedObject)
             return detectedObject;
         else
             return null;
-    }
-    private void Start()
-    {
-        crosshairUIController = GameObject.Find("Crosshair_Image").GetComponent<CrosshairUIController>();
     }
     private void Update()
     {
@@ -29,29 +23,26 @@ public class RaycastDetector : MonoBehaviour
     }
     private GameObject TryDetect()
     {
-        if (inventoryUIController.isOpened)
+        bool isInteractableObject = false;
+        detectedObjectType = null;
+        if (inventoryUI.isOpened)
             return null;
 
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+         
         if (Physics.Raycast(ray, out hit, reachDistance))
         {
             Transform target = hit.transform;
-            if (target.CompareTag("Craft Station"))
-            {
-                isCollectibleItem = false;
-                crosshairUIController.TryChangeColor(isInteractableObject);
-                return target.gameObject;
-            }
-            else if (target.CompareTag("Collectible Item"))
-            {
-                isCollectibleItem = true;
-                crosshairUIController.TryChangeColor(isInteractableObject);
-                return target.gameObject;
-            }
+            foreach (string i in interactableTypes)
+                if (isInteractableObject = target.tag == i)
+                {
+                    detectedObjectType = target.tag;
+                    crosshairUIController.TryChangeColor(isInteractableObject);
+                    return target.gameObject;
+                }
         }
-        crosshairUIController.TryChangeColor(!isInteractableObject);
+        crosshairUIController.TryChangeColor(isInteractableObject);
         return null;
     }
 }
