@@ -2876,6 +2876,11 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3924153565944334188, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
   m_PrefabInstance: {fileID: 1449028598999637601}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1199458703 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8110039477261589139, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
+  m_PrefabInstance: {fileID: 1449028598999637601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1223973324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5854,6 +5859,10 @@ PrefabInstance:
       propertyPath: _UIController
       value: 
       objectReference: {fileID: 782259085}
+    - target: {fileID: 6238346548963209308, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
+      propertyPath: playerCameraPosition
+      value: 
+      objectReference: {fileID: 1199458703}
     - target: {fileID: 6549694312828392602, guid: aa7bf3ab040d9ad43af5b01b385e96e7, type: 3}
       propertyPath: sensX
       value: 1200

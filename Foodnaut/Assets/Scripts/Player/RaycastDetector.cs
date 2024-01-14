@@ -7,6 +7,7 @@ public class RaycastDetector : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private UIController inventoryUI;
     [SerializeField] private CrosshairUIController crosshairUIController;
+    private Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
     private GameObject detectedObject;
     private string detectedObjectType = null;
     private readonly string[] interactableTypes = {"CraftStation", "CollectibleItem"};
@@ -28,7 +29,7 @@ public class RaycastDetector : MonoBehaviour
         bool isInteractableObject = false;
         detectedObjectType = null;
 
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = playerCamera.ScreenPointToRay(screenCenter);
         RaycastHit hit;
          
         if (Physics.Raycast(ray, out hit, reachDistance))

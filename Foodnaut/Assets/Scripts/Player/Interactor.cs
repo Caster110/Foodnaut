@@ -7,7 +7,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] private InputChecker inputChecker;
     [SerializeField] private ItemPlayerStorage itemPlayerStorage;
     [SerializeField] private UIController _UIController;
-    [SerializeField] private GameObject playerCameraPosition;
+    [SerializeField] private Transform playerCameraPosition;
     private void Update()
     {
         if (inputChecker.CanCloseUI())

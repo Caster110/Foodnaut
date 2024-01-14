@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    public void CloseUI(GameObject playerCameraPosition)
+    public void CloseUI(Transform playerCameraPosition)
     {
         UIBackpack_Panel.SetActive(false);
         if (currentInteractableUI)
@@ -29,10 +29,12 @@ public class UIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    public void OpenInteractableStation(GameObject target, GameObject playerCameraPosition)
+    public void OpenInteractableStation(GameObject target, Transform playerCameraPosition)
     {
         UIBackpack_Panel.SetActive(true);
         currentInteractableUI = target.GetComponent<InteractableUI>();
+        if (currentInteractableUI == null)
+            Debug.Log("скрипта нет");
         currentInteractableUI.On(playerCameraPosition);
         crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
@@ -42,9 +44,9 @@ public class UIController : MonoBehaviour
     { 
         if (UIBackpack_Panel.activeSelf)
             return true;
-        /*else if (lastUICraftStation_Panel.activeSelf)
+        /*else if (currentInteractableUI)
             return true;*/ // необяз тк инвентарь открывается с крафтСтейшн
-        else 
+        else
             return false;
     }
 }

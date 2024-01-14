@@ -284,7 +284,7 @@ MonoBehaviour:
   inputChecker: {fileID: 3985044576980936427}
   itemPlayerStorage: {fileID: 2678587897399008666}
   _UIController: {fileID: 0}
-  playerCameraPosition: {fileID: 5876469721795170699}
+  playerCameraPosition: {fileID: 8110039477261589139}
 --- !u!114 &3985044576980936427
 MonoBehaviour:
   m_ObjectHideFlags: 0

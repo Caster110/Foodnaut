@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     private bool keySit;
     private bool keyJump;
     private bool keyRun;
+    private bool keyW;
+    private bool keyA;
+    private bool keyS;
+    private bool keyD;
 
     private Vector3 walkDirection;
     private Vector3 velocity;
@@ -33,24 +37,34 @@ public class PlayerMovement : MonoBehaviour
         keyJump = Input.GetKey(KeyCode.Space);
         keyRun= Input.GetKey(KeyCode.LeftShift);
         keySit = Input.GetKey(KeyCode.LeftControl);
-        keyHorizontal = Input.GetAxis("Horizontal");
-        keyVertical = Input.GetAxis("Vertical");
+        keyW = Input.GetKey(KeyCode.W);
+        keyA = Input.GetKey(KeyCode.A);
+        keyS = Input.GetKey(KeyCode.S);
+        keyD = Input.GetKey(KeyCode.D);
     }
 
     private void FixedUpdate()
     {
         bool groundCheck = characterController.isGrounded;
-        walkDirection = (keyHorizontal * transform.right + keyVertical * transform.forward);//.normalized;
         TryJump(keyJump, groundCheck);
         TryRun(keyRun);
         TrySit(keySit);
-        Walk(walkDirection);
+        Walk();
         DoGravity(groundCheck);
     }
 
-    private void Walk(Vector3 direction)
+    private void Walk()
     {
-        characterController.Move(direction * currentSpeed * Time.fixedDeltaTime);
+        if (keyW)
+            walkDirection += transform.forward;
+        if (keyA)
+            walkDirection -= transform.right;
+        if (keyS)
+            walkDirection -= transform.forward;
+        if (keyD)
+            walkDirection += transform.right;
+        characterController.Move(walkDirection.normalized * currentSpeed * Time.fixedDeltaTime);
+        walkDirection = Vector3.zero;
     }
 
     private void DoGravity(bool isGrounded)
