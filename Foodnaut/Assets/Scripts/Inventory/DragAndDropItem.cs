@@ -19,9 +19,6 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             return;
         itemImage.transform.SetParent(transform.parent.parent.parent);
         itemImage.raycastTarget = false;
-
-        /*Vector3 toCenter = Input.mousePosition - itemImage.transform.position;
-        itemTransform.position += toCenter;*/
         itemTransform.position = Input.mousePosition;
         slotVisualComponent.OnTakenItem();
     }
@@ -39,21 +36,16 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         itemImage.transform.SetParent(thisSlot.transform);
         itemImage.transform.position = thisSlot.transform.position;
         GameObject targetObject = eventData.pointerCurrentRaycast.gameObject;
-        InventorySlot targetSlot;
 
         if (targetObject)
         {
             if (targetObject.tag == "ItemPlacement")
-            {
-                targetSlot = targetObject.transform.parent.GetComponent<InventorySlot>();
-                if (targetSlot.isEmpty)
-                    ExchangeSlotData(targetSlot, targetSlot.isEmpty);
-                else
-                    ExchangeSlotData(targetSlot, targetSlot.isEmpty);
-            }
+                ExchangeSlotData(targetObject.transform.parent.GetComponent<InventorySlot>());
         }
         else
+        {
             ThrowItem();
+        }
         slotVisualComponent.OnTakenItem();
     }
     private void ThrowItem()
@@ -61,9 +53,9 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         Instantiate(thisSlot.GetData().itemPrefab, playerFace.position + playerFace.forward, Quaternion.identity);
         thisSlot.Clear();
     }
-    private void ExchangeSlotData(InventorySlot targetSlot, bool targetSlotIsEmpty)
+    private void ExchangeSlotData(InventorySlot targetSlot)
     {
-        if (targetSlotIsEmpty)
+        if (targetSlot.isEmpty)
         {
             targetSlot.SetData(thisSlot.GetData());
             thisSlot.Clear();

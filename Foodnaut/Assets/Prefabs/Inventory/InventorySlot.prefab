@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIconImage: {fileID: 7741368400865255680}
+  iconRectTransform: {fileID: 8961350962475134042}
 --- !u!114 &8262531422684402739
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     [SerializeField] private Image itemIconImage;
+    [SerializeField] private RectTransform iconRectTransform;
     private ItemScriptableObject itemData;
     public bool isEmpty => itemData == null;
     public ItemScriptableObject GetData() { return itemData; }
@@ -16,7 +17,6 @@ public class InventorySlot : MonoBehaviour
     {
         itemIconImage.color = new Color(1,1,1,255);
         itemIconImage.sprite = itemData.icon;
-        RectTransform iconRectTransform = itemIconImage.GetComponent<RectTransform>();
         iconRectTransform.anchorMin = Vector2.zero;
         iconRectTransform.anchorMax = Vector2.one;
     }
