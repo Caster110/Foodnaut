@@ -20,7 +20,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         itemImage.transform.SetParent(transform.parent.parent.parent);
         itemImage.raycastTarget = false;
         itemTransform.position = Input.mousePosition;
-        slotVisualComponent.OnTakenItem();
+        if (slotVisualComponent != null)
+            slotVisualComponent.OnTakenItem();
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -37,17 +38,25 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         itemImage.transform.position = thisSlot.transform.position;
         GameObject targetObject = eventData.pointerCurrentRaycast.gameObject;
 
+        InventorySlot targetSlot = null;
+        if (targetObject && targetObject.tag == "ItemPlacement")
+        {
+            targetSlot = targetObject.transform.parent.GetComponent<InventorySlot>();
+        }
+
         if (targetObject)
         {
-            if (targetObject.tag == "ItemPlacement")
+            if (targetObject.tag == "ItemPlacement" && targetSlot.SlotAccessLevel != InventorySlot.AccessLevel.OnlyTake)
                 ExchangeSlotData(targetObject.transform.parent.GetComponent<InventorySlot>());
         }
         else
         {
             ThrowItem();
         }
-        slotVisualComponent.OnTakenItem();
+        if (slotVisualComponent != null)
+            slotVisualComponent.OnTakenItem();
     }
+    
     private void ThrowItem()
     {
         Instantiate(thisSlot.GetData().itemPrefab, playerFace.position + playerFace.forward, Quaternion.identity);

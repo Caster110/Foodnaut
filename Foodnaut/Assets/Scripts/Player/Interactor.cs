@@ -26,7 +26,7 @@ public class Interactor : MonoBehaviour
             else if (interactableObject = raycastDetector.GetDetectedObjectWithTag("CraftStation"))
             {
                 DeactivateAllMovement();
-                _UIController.OpenInteractableStation(interactableObject, playerCameraPosition);
+                _UIController.OpenCraftStation(interactableObject);
             }
         }
         else if (inputChecker.CanOpenInventory())

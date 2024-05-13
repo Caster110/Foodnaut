@@ -4,11 +4,13 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject UIBackpack_Panel;
+    [SerializeField] private GameObject UICraftStation_Panel;
     [SerializeField] private GameObject crosshair;
     private InteractableUI currentInteractableUI;
     private void Start()
     {
         UIBackpack_Panel.SetActive(false);
+        UICraftStation_Panel.SetActive(false);
     }
     public void OpenInventory()
     {
@@ -17,9 +19,17 @@ public class UIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+    public void OpenCraftStation()
+    {
+        UICraftStation_Panel.SetActive(false);
+        crosshair.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void CloseUI(Transform playerCameraPosition)
     {
         UIBackpack_Panel.SetActive(false);
+        UICraftStation_Panel.SetActive(false);
         if (currentInteractableUI)
         {
             currentInteractableUI.Off(playerCameraPosition);
@@ -29,13 +39,13 @@ public class UIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    public void OpenInteractableStation(GameObject target, Transform playerCameraPosition)
+    public void OpenCraftStation(GameObject target)
     {
         UIBackpack_Panel.SetActive(true);
+        UICraftStation_Panel.SetActive(true);
         currentInteractableUI = target.GetComponent<InteractableUI>();
         if (currentInteractableUI == null)
-            Debug.Log("скрипта нет");
-        currentInteractableUI.On(playerCameraPosition);
+            Debug.Log("РљСЂР°С„С‚РѕРІР°СЏ СЃС‚Р°РЅС†РёСЏ");
         crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -45,7 +55,7 @@ public class UIController : MonoBehaviour
         if (UIBackpack_Panel.activeSelf)
             return true;
         /*else if (currentInteractableUI)
-            return true;*/ // необяз тк инвентарь открывается с крафтСтейшн
+            return true;*/ // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         else
             return false;
     }

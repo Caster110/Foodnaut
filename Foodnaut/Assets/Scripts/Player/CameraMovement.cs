@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    private void Update()
+    private void LateUpdate()
     {
         GetKeys();
     }
