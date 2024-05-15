@@ -19,6 +19,22 @@ public class CraftingManager : MonoBehaviour
     // Словарь для хранения соответствия названий спрайтов и данных предметов
     [SerializeField] private Dictionary<string, ItemScriptableObject> itemsDictionary = new Dictionary<string, ItemScriptableObject>();
     public ItemScriptableObject rawPotatoData; 
+    public ItemScriptableObject rawMeatData; 
+    public ItemScriptableObject slicedMeatData; 
+    public ItemScriptableObject knifeData; 
+    public ItemScriptableObject carrotData; 
+    public ItemScriptableObject slicedCarrotData; 
+    public ItemScriptableObject cleanPotatoData; 
+    public ItemScriptableObject onionData; 
+    public ItemScriptableObject slicedOnionData; 
+    public ItemScriptableObject tomatoData; 
+    public ItemScriptableObject slicedTomatoData; 
+    public ItemScriptableObject cabbageData; 
+    public ItemScriptableObject slicedCabbageData; 
+    public ItemScriptableObject oilData; 
+    public ItemScriptableObject saltData; 
+    public ItemScriptableObject saladData; 
+    public ItemScriptableObject plateData; 
     public Animator arrowAnimator;
 
     // Метод для начала крафта
@@ -73,32 +89,34 @@ public class CraftingManager : MonoBehaviour
 
         craftButton.interactable = true; // Включаем кнопку после крафта
     }
-
-    // Метод для очистки слотов ингредиентов
+    
     private void ClearIngredients()
-{
-    for (int i = 1; i <= 12; i++)
     {
-        GameObject slotGameObject = GameObject.Find("Slot_Image" + i);
-        if (slotGameObject != null)
+        for (int i = 1; i <= 12; i++)
         {
-            InventorySlot slot = slotGameObject.GetComponent<InventorySlot>();
-            if (slot != null)
+            GameObject slotGameObject = GameObject.Find("Slot_Image" + i);
+            if (slotGameObject != null)
             {
-                slot.Clear();
+                InventorySlot slot = slotGameObject.GetComponent<InventorySlot>();
+                if (slot != null)
+                {
+                    ItemScriptableObject itemData = slot.GetData();
+                    if ((itemData != null) && (itemData.name != "Knife") && (itemData.name != "Oil") && (itemData.name != "Salt"))
+                    {
+                        slot.Clear(); 
+                    }
+                }
+                else
+                {
+                    Debug.LogError("InventorySlot component not found on object: " + slotGameObject.name);
+                }
             }
             else
             {
-                Debug.LogError("InventorySlot component not found on object: " + slotGameObject.name);
+                Debug.LogError("Slot GameObject not found: Slot_Image" + i);
             }
         }
-        else
-        {
-            Debug.LogError("Slot GameObject not found: Slot_Image" + i);
-        }
     }
-}
-    
 
     // Проверка соответствия рецепта списку ингредиентов
     private bool RecipeMatches(List<string> ingredients, Recipe recipe)
@@ -132,10 +150,39 @@ public class CraftingManager : MonoBehaviour
     private void Start()
     {
         arrowAnimator.SetTrigger("StopCrafting");
-        // Добавляем предметы в словарь
+        
+        // Предметы в словаре
         itemsDictionary.Add("RawPotato", rawPotatoData);
+        itemsDictionary.Add("RawMeat", rawMeatData);
+        itemsDictionary.Add("SlicedMeat", slicedMeatData);
+        itemsDictionary.Add("Knife", knifeData);
+        itemsDictionary.Add("Carrot", carrotData);
+        itemsDictionary.Add("SlicedCarrot", slicedCarrotData);
+        itemsDictionary.Add("CleanPotato", cleanPotatoData);
+        itemsDictionary.Add("Onion", onionData);
+        itemsDictionary.Add("SlicedOnion", slicedOnionData);
+        itemsDictionary.Add("Tomato", tomatoData);
+        itemsDictionary.Add("SlicedTomato", slicedTomatoData);
+        itemsDictionary.Add("Cabbage", cabbageData);
+        itemsDictionary.Add("SlicedCabbage", slicedCabbageData);
+        itemsDictionary.Add("Oil", oilData);
+        itemsDictionary.Add("Salt", saltData);
+        itemsDictionary.Add("Salad", saladData);
+        itemsDictionary.Add("Plate", plateData);
 
-        // Добавляем первый рецепт в список рецептов
-        recipes.Add(new Recipe() { ingredients = new List<string> { "RawMeat" }, result = "RawPotato" });
+        // Рецепт "Нарезанное мясо"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "RawMeat" }, result = "SlicedMeat" });
+        // Рецепт "Нарезанная морковь"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "Carrot" }, result = "SlicedCarrot" });
+        // Рецепт "Очищенный картофель"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "RawPotato" }, result = "CleanPotato" });
+        // Рецепт "Нарезанный лук"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "Onion" }, result = "SlicedOnion" });
+        // Рецепт "Нарезанный помидор"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "Tomato" }, result = "SlicedTomato" });
+        // Рецепт "Нарезанная капуста"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "Cabbage" }, result = "SlicedCabbage" });
+        // Рецепт "Простой салат"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Plate", "Oil", "Salt", "Sliced_Cabbage", "Sliced_Onion", "Sliced_Tomato" }, result = "Salad" });
     }
 }

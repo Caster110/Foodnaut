@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f6f236184f8124f8633e561927c2ce, type: 3}
+  m_Name: SlicedMeat
+  m_EditorClassIdentifier: 
+  id: 
+  _name: SlicedMeat
+  itemType: 1
+  icon: {fileID: 21300000, guid: f02fe77a9cce0b94e963126c5a3fc555, type: 3}
+  itemPrefab: {fileID: 3065303465701465538, guid: d7f6261e3f36f6c4a9bfd9599500c00c, type: 3}
