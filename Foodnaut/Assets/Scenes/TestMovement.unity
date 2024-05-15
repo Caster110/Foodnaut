@@ -659,7 +659,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (4)
+      value: Slot_Image3
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1053,7 +1053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (1)
+      value: Slot_Image_Final
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1420,7 +1420,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (2)
+      value: Slot_Image1
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1875,7 +1875,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (5)
+      value: Slot_Image4
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2392,7 +2392,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (12)
+      value: Slot_Image11
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2861,7 +2861,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (8)
+      value: Slot_Image7
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3218,7 +3218,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (7)
+      value: Slot_Image6
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3442,6 +3442,7 @@ GameObject:
   - component: {fileID: 754355325}
   - component: {fileID: 754355324}
   - component: {fileID: 754355323}
+  - component: {fileID: 754355326}
   m_Layer: 5
   m_Name: CraftButton
   m_TagString: Untagged
@@ -3512,7 +3513,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 754355324}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 754355326}
+        m_TargetAssemblyTypeName: CraftingManager, Assembly-CSharp
+        m_MethodName: Craft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &754355324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3551,6 +3564,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754355321}
   m_CullTransparentMesh: 1
+--- !u!114 &754355326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754355321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd279c36636b2014889d8350f1750f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipes:
+  - ingredients:
+    - 
+    result: 
+  resultSlot: {fileID: 1116265616}
+  craftButton: {fileID: 754355323}
+  rawPotatoData: {fileID: 11400000, guid: 52c31e3933720574bb86e81ce5f8b9c2, type: 2}
+  arrowAnimator: {fileID: 1855107014}
 --- !u!4 &773359881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ee14857d51363946bac6dd35f172868, type: 3}
@@ -3934,7 +3967,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (13)
+      value: Slot_Image12
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4767,6 +4800,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51065c6f8c4a9c246a885a90516c6159, type: 3}
+--- !u!114 &1116265616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 535103475578832293, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
+  m_PrefabInstance: {fileID: 218660318}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763b9a8268606b04db8dfa092c68c37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1125343918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5656,7 +5700,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (10)
+      value: Slot_Image9
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5920,7 +5964,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (9)
+      value: Slot_Image8
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -6127,7 +6171,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (6)
+      value: Slot_Image5
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -7275,6 +7319,7 @@ GameObject:
   - component: {fileID: 1855107011}
   - component: {fileID: 1855107013}
   - component: {fileID: 1855107012}
+  - component: {fileID: 1855107014}
   m_Layer: 5
   m_Name: CraftArrow
   m_TagString: Untagged
@@ -7291,7 +7336,7 @@ RectTransform:
   m_GameObject: {fileID: 1855107010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 192186866}
@@ -7339,6 +7384,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855107010}
   m_CullTransparentMesh: 1
+--- !u!95 &1855107014
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855107010}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62d1ba85855d961439a3d1c8a425428d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1855458369
 GameObject:
   m_ObjectHideFlags: 0
@@ -7436,7 +7502,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (3)
+      value: Slot_Image2
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8179,7 +8245,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022559948955070318, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_Name
-      value: Slot_Image (11)
+      value: Slot_Image10
       objectReference: {fileID: 0}
     - target: {fileID: 6582825358442952491, guid: b2ca711f38fdce741af01d8142a3ad36, type: 3}
       propertyPath: m_SizeDelta.x

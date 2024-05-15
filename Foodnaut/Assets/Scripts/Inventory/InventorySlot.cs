@@ -21,21 +21,24 @@ public class InventorySlot : MonoBehaviour
 
     public void SetData(ItemScriptableObject itemInfo)
     {
+        /*
         if (accessLevel == AccessLevel.OnlyTake)
         {
             // Не разрешаем класть предметы, если уровень доступа только на забирание предметов
             return;
         }
+        */
 
         itemData = itemInfo;
+        
         SetImage();
     }
     
     public void Clear()
     {
+        
         if (accessLevel == AccessLevel.OnlyPut)
         {
-            // Не разрешаем забирать предметы, если уровень доступа только на класть предметы
             return;
         }
 
