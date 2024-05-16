@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7183381092216835162}
   - component: {fileID: 3802902110133970982}
   - component: {fileID: 7941542455914062345}
+  - component: {fileID: -5333806906903855412}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: CollectibleItem
@@ -96,6 +97,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.21636724, y: 0.21561362, z: 0.2288118}
   m_Center: {x: -0.0011265278, y: 0.09616632, z: 0.000590533}
+--- !u!114 &-5333806906903855412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468136081706983765}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.8798679, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8931461223524030860
 GameObject:
   m_ObjectHideFlags: 0

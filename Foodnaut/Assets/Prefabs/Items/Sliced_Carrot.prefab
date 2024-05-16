@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6645506776875298525}
   - component: {fileID: 2834840844450734304}
   - component: {fileID: 7548467188063694250}
+  - component: {fileID: 844691507979974096}
   m_Layer: 0
   m_Name: Sliced_Carrot
   m_TagString: CollectibleItem
@@ -96,6 +97,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &844691507979974096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088346679707407579}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.8798679, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6292031229446646786
 GameObject:
   m_ObjectHideFlags: 0

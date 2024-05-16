@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5320928004314435591}
   - component: {fileID: 4735624511824884661}
   - component: {fileID: 4938592149478461658}
+  - component: {fileID: -1718322884371472944}
   m_Layer: 0
   m_Name: Oil
   m_TagString: CollectibleItem
@@ -179,3 +180,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.23790836, y: 0.83076143, z: 0.21890998}
   m_Center: {x: 0.0000047683716, y: 0.39502424, z: -0.0017523766}
+--- !u!114 &-1718322884371472944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6400682472991194695}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.8798679, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

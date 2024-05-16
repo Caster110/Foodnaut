@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2222404973791175066}
   - component: {fileID: 8238161958352293303}
   - component: {fileID: 7764257425938218158}
+  - component: {fileID: 4199616703748139817}
   m_Layer: 0
   m_Name: Blender
   m_TagString: Blender
@@ -96,6 +97,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5ecb94100daae8045a7a77bd4ee8970d, type: 2}
+--- !u!114 &4199616703748139817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016816965123998432}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.8798679, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8327646386295011897
 GameObject:
   m_ObjectHideFlags: 0
