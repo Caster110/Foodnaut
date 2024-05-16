@@ -7,12 +7,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private float speedRun;
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private float smoothTime = 0.1f; 
 
-    private float keyHorizontal;
-    private float keyVertical;
-    private bool keySit;
     private bool keyJump;
     private bool keyRun;
+    private bool keySit;
     private bool keyW;
     private bool keyA;
     private bool keyS;
@@ -21,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 walkDirection;
     private Vector3 velocity;
     private float currentSpeed;
+
+    // Используйте эту переменную для хранения текущей скорости для интерполяции
+    private Vector3 currentVelocity;
 
     private void Start()
     {
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void GetKeys()
     {
         keyJump = Input.GetKey(KeyCode.Space);
-        keyRun= Input.GetKey(KeyCode.LeftShift);
+        keyRun = Input.GetKey(KeyCode.LeftShift);
         keySit = Input.GetKey(KeyCode.LeftControl);
         keyW = Input.GetKey(KeyCode.W);
         keyA = Input.GetKey(KeyCode.A);
@@ -63,7 +65,14 @@ public class PlayerMovement : MonoBehaviour
             walkDirection -= transform.forward;
         if (keyD)
             walkDirection += transform.right;
-        characterController.Move(walkDirection.normalized * currentSpeed * Time.fixedDeltaTime);
+
+        walkDirection.Normalize();
+
+        // Плавное изменение скорости движения
+        Vector3 targetVelocity = walkDirection * currentSpeed;
+        currentVelocity = Vector3.SmoothDamp(currentVelocity, targetVelocity, ref currentVelocity, smoothTime);
+
+        characterController.Move(currentVelocity * Time.fixedDeltaTime);
         walkDirection = Vector3.zero;
     }
 
@@ -72,9 +81,11 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && velocity.y < 0f)
         {
             velocity.y = 0f;
-            return;
         }
-        velocity.y -= gravity * Time.fixedDeltaTime;
+        else
+        {
+            velocity.y -= gravity * Time.fixedDeltaTime;
+        }
         characterController.Move(velocity * Time.fixedDeltaTime);
     }
 

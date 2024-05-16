@@ -56,7 +56,7 @@ public class CraftingManager : MonoBehaviour
 
         foreach (Recipe recipe in recipes) // Проверяем каждый рецепт
         {
-            if (RecipeMatches(ingredients, recipe)) // Если ингредиенты соответствуют рецепту
+            if (RecipeMatches(ingredients, recipe) && (resultSlot.GetData() == null)) // Если ингредиенты соответствуют рецепту
             {
                 StartCoroutine(PerformCraft(recipe)); // Запускаем процесс крафта
                 return;

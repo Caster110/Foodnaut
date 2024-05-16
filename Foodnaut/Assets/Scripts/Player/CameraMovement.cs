@@ -10,26 +10,26 @@ public class CameraMovement : MonoBehaviour
     private float mouseX;
     private float mouseY;
     private Vector3 localPosition = new Vector3(0, 0.655f, -0.057f);
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    private void LateUpdate()
+
+    private void Update() 
     {
-        GetKeys();
-    }
-    private void GetKeys()
-    {
-        mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
-    }
-    private void FixedUpdate()
-    {
-        transform.localPosition = localPosition;
+        mouseX = Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
+        mouseY = Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
+
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+    }
+
+    private void LateUpdate() 
+    {
+        transform.localPosition = localPosition;
 
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         playerTransform.rotation = Quaternion.Euler(0, yRotation, 0);
