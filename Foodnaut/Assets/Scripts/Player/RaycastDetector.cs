@@ -10,7 +10,7 @@ public class RaycastDetector : MonoBehaviour
     private Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
     private GameObject detectedObject;
     private string detectedObjectType = null;
-    private readonly string[] interactableTypes = {"CraftStation", "CollectibleItem"};
+    private readonly string[] interactableTypes = {"CraftStation", "CollectibleItem", "Blender"};
     public GameObject GetDetectedObjectWithTag(string tagOfRequestedObject) 
     {
         if (detectedObjectType == tagOfRequestedObject)

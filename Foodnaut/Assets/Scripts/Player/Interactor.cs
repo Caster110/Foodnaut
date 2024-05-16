@@ -19,14 +19,27 @@ public class Interactor : MonoBehaviour
         else if (inputChecker.CanInteract())
         {
             GameObject interactableObject;
+            if (interactableObject = raycastDetector.GetDetectedObjectWithTag("CraftStation"))
+            {
+                DeactivateAllMovement();
+                _UIController.OpenCraftStation(interactableObject);
+            }
+            else if (interactableObject = raycastDetector.GetDetectedObjectWithTag("Blender"))
+            {
+                DeactivateAllMovement();
+                _UIController.OpenBlender(interactableObject);
+            }
+        }
+        else if (inputChecker.CanPickUp())
+        {
+            GameObject interactableObject;
             if (interactableObject = raycastDetector.GetDetectedObjectWithTag("CollectibleItem"))
             {
                 itemPlayerStorage.TryAddItem(interactableObject);
             }
-            else if (interactableObject = raycastDetector.GetDetectedObjectWithTag("CraftStation"))
+            else if (interactableObject = raycastDetector.GetDetectedObjectWithTag("Blender"))
             {
-                DeactivateAllMovement();
-                _UIController.OpenCraftStation(interactableObject);
+                itemPlayerStorage.TryAddItem(interactableObject);
             }
         }
         else if (inputChecker.CanOpenInventory())

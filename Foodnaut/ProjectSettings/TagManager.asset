@@ -10,6 +10,7 @@ TagManager:
   - CraftStation
   - ItemPlacement
   - ClosableUI
+  - Blender
   layers:
   - Default
   - TransparentFX

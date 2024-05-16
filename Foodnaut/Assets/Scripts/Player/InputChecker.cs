@@ -13,6 +13,15 @@ public class InputChecker : MonoBehaviour
         else
             return true;
     }
+    public bool CanPickUp()
+    {
+        if (UIController.IsAnyClosableUIOpened())
+            return false;
+        else if (!Input.GetKeyDown(KeyCode.E))
+            return false;
+        else
+            return true;
+    }
     public bool CanOpenInventory()
     {
         if (UIController.IsAnyClosableUIOpened())

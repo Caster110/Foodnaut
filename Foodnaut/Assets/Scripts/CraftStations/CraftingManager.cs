@@ -31,6 +31,8 @@ public class CraftingManager : MonoBehaviour
     public ItemScriptableObject slicedTomatoData; 
     public ItemScriptableObject cabbageData; 
     public ItemScriptableObject slicedCabbageData; 
+    public ItemScriptableObject orangeData; 
+    public ItemScriptableObject slicedOrangeData; 
     public ItemScriptableObject oilData; 
     public ItemScriptableObject saltData; 
     public ItemScriptableObject saladData; 
@@ -165,6 +167,8 @@ public class CraftingManager : MonoBehaviour
         itemsDictionary.Add("SlicedTomato", slicedTomatoData);
         itemsDictionary.Add("Cabbage", cabbageData);
         itemsDictionary.Add("SlicedCabbage", slicedCabbageData);
+        itemsDictionary.Add("Orange", orangeData);
+        itemsDictionary.Add("SlicedOrange", slicedOrangeData);
         itemsDictionary.Add("Oil", oilData);
         itemsDictionary.Add("Salt", saltData);
         itemsDictionary.Add("Salad", saladData);
@@ -182,6 +186,8 @@ public class CraftingManager : MonoBehaviour
         recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "Tomato" }, result = "SlicedTomato" });
         // Рецепт "Нарезанная капуста"
         recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "Cabbage" }, result = "SlicedCabbage" });
+        // Рецепт "Нарезанный апельсин"
+        recipes.Add(new Recipe() { ingredients = new List<string> { "Knife", "Orange" }, result = "SlicedOrange" });
         // Рецепт "Простой салат"
         recipes.Add(new Recipe() { ingredients = new List<string> { "Plate", "Oil", "Salt", "Sliced_Cabbage", "Sliced_Onion", "Sliced_Tomato" }, result = "Salad" });
     }

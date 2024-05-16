@@ -52,7 +52,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             Vector3 newPosition = Input.mousePosition;
             // Поскольку теперь мы перемещаем весь фон подсказки, вам может понадобиться настроить смещение
-            newPosition.x += tooltipBackground.GetComponent<RectTransform>().rect.width * 0.5f; // Смещаем подсказку вправо от курсора
+            newPosition.x += tooltipBackground.GetComponent<RectTransform>().rect.width * 1f; // Смещаем подсказку вправо от курсора
             newPosition.y -= tooltipBackground.GetComponent<RectTransform>().rect.height * 2.4f; // Смещаем подсказку вниз от курсора
             
             // Преобразование экранных координат в мировые для Canvas
